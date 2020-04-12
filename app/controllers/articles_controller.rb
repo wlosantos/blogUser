@@ -1,5 +1,9 @@
 class ArticlesController < ApplicationController
 
+  def index
+    @articles = Article.all.order('created_at DESC')
+  end
+
   def show
     @article = Article.find(params[:id])
   end
@@ -16,6 +20,22 @@ class ArticlesController < ApplicationController
       redirect_to @article
     else
       render 'new'
+    end
+  end
+
+  def edit
+    @article = Article.find(params[:id])
+  end
+
+  def update
+    @article = Article.find(params[:id])
+
+    if @article.update(article_params)
+      flash[:notice] = 'Article was updated'
+      redirect_to @article
+    else
+      flash[:notice] = 'Article not was updated'
+      render 'edit'
     end
   end
 
