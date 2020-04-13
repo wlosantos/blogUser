@@ -11,12 +11,19 @@
 
   <body>
 
-    <% flash.each do |name, msg| %>
-      <ul>
-        <li><%= msg %></li>
-      </ul>
-    <% end %>
+    <%= render 'articles/navigation' %>
 
-    <%= yield %>
+    <div class="container">
+
+      <% flash.each do |name, msg| %>
+        <ul>
+          <li><%= msg %></li>
+        </ul>
+      <% end %>
+
+      <%= yield %>
+
+    </div>
+
   </body>
 </html>
